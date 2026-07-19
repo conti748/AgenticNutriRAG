@@ -41,17 +41,17 @@
 
 ## 3. Agentic RAG Flow (`nutrition-rag-agent`)
 
-- [ ] 3.1 Implement the query rewriting function (LLM call), with a
+- [x] 3.1 Implement the query rewriting function (LLM call), with a
       config flag to disable it and pass the raw question through
-- [ ] 3.2 Implement text-only, vector-only, and hybrid (RRF) Elasticsearch
+- [x] 3.2 Implement text-only, vector-only, and hybrid (RRF) Elasticsearch
       query functions behind a single retrieval interface selected by config
-- [ ] 3.3 Implement the `lookup_food_nutrients(fdc_id)` tool function and
+- [x] 3.3 Implement the `lookup_food_nutrients(fdc_id)` tool function and
       register it with the OpenAI tool-calling API
-- [ ] 3.4 Implement the agent loop: rewrite → retrieve → let the model call
+- [x] 3.4 Implement the agent loop: rewrite → retrieve → let the model call
       tools as needed → generate a grounded, source-citing answer
-- [ ] 3.5 Handle the no-relevant-results case (return a clear "not found"
+- [x] 3.5 Handle the no-relevant-results case (return a clear "not found"
       response instead of fabricating an answer)
-- [ ] 3.6 Add a minimal test/script exercising the full agent loop against
+- [x] 3.6 Add a minimal test/script exercising the full agent loop against
       the real (or a test) Elasticsearch index with a handful of sample
       questions
 

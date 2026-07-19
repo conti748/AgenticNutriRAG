@@ -2,11 +2,14 @@
 
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+
+RetrievalStrategy = Literal["text_only", "vector_only", "hybrid"]
 
 
 class Settings(BaseSettings):
@@ -20,6 +23,9 @@ class Settings(BaseSettings):
     usda_api_key: str = Field(min_length=1)
 
     elasticsearch_url: str = Field(min_length=1)
+
+    retrieval_strategy: RetrievalStrategy = "hybrid"
+    query_rewriting_enabled: bool = True
 
     postgres_host: str = Field(min_length=1)
     postgres_port: int = 5432
