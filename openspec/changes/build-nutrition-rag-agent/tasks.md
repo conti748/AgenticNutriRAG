@@ -80,12 +80,12 @@
 
 ## 6. Streamlit Chat Interface (`chat-interface`)
 
-- [ ] 6.1 Build the question input + submit flow calling the agent
-- [ ] 6.2 Display the generated answer with cited source foods
-- [ ] 6.3 Add a loading/progress indicator while the agent is processing
-- [ ] 6.4 Add thumbs up/down feedback controls per answer, wired to the
+- [x] 6.1 Build the question input + submit flow calling the agent
+- [x] 6.2 Display the generated answer with cited source foods
+- [x] 6.3 Add a loading/progress indicator while the agent is processing
+- [x] 6.4 Add thumbs up/down feedback controls per answer, wired to the
       monitoring capability's feedback logging
-- [ ] 6.5 Manual pass: run the app locally and verify the golden path
+- [x] 6.5 Manual pass: run the app locally and verify the golden path
       (ask → answer → feedback) and an edge case (no relevant data found)
 
 ## 7. Monitoring (`monitoring`)
