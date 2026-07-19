@@ -1,0 +1,182 @@
+[
+  {
+    "question": "How many calories are found in uncooked long-grain whole grain rice?",
+    "fdc_id": 2512380,
+    "food_name": "Rice, brown, long grain, unenriched, raw",
+    "reference_answer": "Uncooked long-grain whole grain rice contains 366 calories per 100 grams."
+  },
+  {
+    "question": "What is the protein content in a raw cut of New York strip steak?",
+    "fdc_id": 2727572,
+    "food_name": "Beef, short loin (NY strip steak), raw",
+    "reference_answer": "The protein content in a raw cut of New York strip steak is 21.3 grams."
+  },
+  {
+    "question": "What is the vitamin C content in a fresh, unpeeled orange-hued fruit that is often enjoyed in desserts or salads?",
+    "fdc_id": 2710815,
+    "food_name": "Apricot, with skin, raw",
+    "reference_answer": "The vitamin C content in a fresh, unpeeled apricot is 3.07 mg."
+  },
+  {
+    "question": "How many calories are there in a serving of whole canned fruits of the nightshade family with added salt?",
+    "fdc_id": 2685578,
+    "food_name": "Tomatoes, whole, canned, solids and liquids, with salt added",
+    "reference_answer": "There are 22.5 calories in a serving of whole canned tomatoes with added salt."
+  },
+  {
+    "question": "What is the calcium content in the dehydrated version of the yellow part of a chicken egg?",
+    "fdc_id": 329716,
+    "food_name": "Egg, yolk, dried",
+    "reference_answer": "The dehydrated version of the yellow part of a chicken egg (egg yolk, dried) contains 270 mg of calcium."
+  },
+  {
+    "question": "What is the sodium content in a creamy dairy product made from curds that is often enjoyed as a snack or mixed with fruit?",
+    "fdc_id": 2346384,
+    "food_name": "Cottage cheese, full fat, large or small curd",
+    "reference_answer": "The sodium content in cottage cheese, full fat, large or small curd is 350 mg."
+  },
+  {
+    "question": "What is the protein content in raw minced poultry that includes additives?",
+    "fdc_id": 2514746,
+    "food_name": "Chicken, ground, with additives, raw",
+    "reference_answer": "The protein content in raw minced poultry that includes additives is 17.9 grams."
+  },
+  {
+    "question": "What is the calcium content in a type of bread made entirely from whole wheat flour?",
+    "fdc_id": 2758994,
+    "food_name": "Bread, 100% whole wheat, commercial",
+    "reference_answer": "The calcium content in 100% whole wheat bread is 132 mg."
+  },
+  {
+    "question": "What is the sodium content in a serving of canned, chopped red fruits often used in sauces and stews?",
+    "fdc_id": 2685581,
+    "food_name": "Tomatoes, crushed, canned",
+    "reference_answer": "The sodium content in a serving of canned, crushed tomatoes is 140.0 mg."
+  },
+  {
+    "question": "What is the protein content in a lean cut of beef from the top loin, typically enjoyed grilled or pan-seared?",
+    "fdc_id": 746759,
+    "food_name": "Beef, loin, top loin steak, boneless, lip-on, separable lean only, trimmed to 1/8\" fat, choice, raw",
+    "reference_answer": "The protein content in a lean cut of beef from the top loin is 22.8 grams."
+  },
+  {
+    "question": "What is the protein content in a smooth spread made from ground sesame seeds?",
+    "fdc_id": 2262073,
+    "food_name": "Sesame butter, creamy",
+    "reference_answer": "The protein content in sesame butter, creamy is 19.7 grams."
+  },
+  {
+    "question": "What is the iron content in those long, thin strands of enriched noodles?",
+    "fdc_id": 2758998,
+    "food_name": "Pasta, dry, enriched, spaghetti",
+    "reference_answer": "The iron content in enriched spaghetti is 3.89 mg."
+  },
+  {
+    "question": "What is the sodium content per 100 grams of those leguminous seeds commonly used in Mexican dishes that come in a can?",
+    "fdc_id": 2644292,
+    "food_name": "Beans, pinto, canned, sodium added, drained and rinsed",
+    "reference_answer": "The sodium content in canned pinto beans, drained and rinsed, is 202 mg per 100 grams."
+  },
+  {
+    "question": "What is the potassium content in those firm, green bananas typically used in savory dishes?",
+    "fdc_id": 2710818,
+    "food_name": "Plantains, underripe, raw",
+    "reference_answer": "The potassium content in underripe raw plantains is 406 mg."
+  },
+  {
+    "question": "What is the vitamin C content in raw red leaf salad greens?",
+    "fdc_id": 2346390,
+    "food_name": "Lettuce, leaf, red, raw",
+    "reference_answer": "The vitamin C content in raw red leaf salad greens is 9.34 mg."
+  },
+  {
+    "question": "What is the fiber content in those canned, pork-infused legumes often served as a side dish?",
+    "fdc_id": 2758982,
+    "food_name": "Baked beans, Original, canned, with pork",
+    "reference_answer": "The fiber content in baked beans, original, canned, with pork is 3.55 grams."
+  },
+  {
+    "question": "What is the fat content in a smooth, creamy fruit that is often used in spreads and salads?",
+    "fdc_id": 2710824,
+    "food_name": "Avocado, Hass, peeled, raw",
+    "reference_answer": "The fat content in Hass avocado, peeled and raw, is 20.3 grams."
+  },
+  {
+    "question": "What is the protein content in a tender cut of raw choice beef that is often used for slow roasting?",
+    "fdc_id": 2646174,
+    "food_name": "Beef, chuck, roast, boneless, choice, raw",
+    "reference_answer": "The protein content in a tender cut of raw choice beef (beef, chuck, roast, boneless, choice, raw) is 18.4 grams."
+  },
+  {
+    "question": "What is the protein content in the tender, cooked portion of poultry typically served without skin or bones?",
+    "fdc_id": 331960,
+    "food_name": "Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, braised",
+    "reference_answer": "The protein content in the tender, cooked portion of skinless, boneless chicken breast is 32.1 grams."
+  },
+  {
+    "question": "What is the protein content of dried legumes commonly used in hummus and salads?",
+    "fdc_id": 2644282,
+    "food_name": "Chickpeas, (garbanzo beans, bengal gram), dry",
+    "reference_answer": "The protein content of dried chickpeas (garbanzo beans) is 21.3 grams per 100 grams."
+  },
+  {
+    "question": "What is the calcium content in this unsweetened, dairy-free beverage derived from oats?",
+    "fdc_id": 2257046,
+    "food_name": "Oat milk, unsweetened, plain, refrigerated",
+    "reference_answer": "The calcium content in oat milk, unsweetened, plain, refrigerated is 148 mg."
+  },
+  {
+    "question": "How many calories are in uncooked minced pig meat?",
+    "fdc_id": 2514745,
+    "food_name": "Pork, ground, raw",
+    "reference_answer": "Uncooked minced pig meat (Pork, ground, raw) contains 228 calories per 100 grams."
+  },
+  {
+    "question": "What is the vitamin C content in tender young rocket leaves when consumed raw?",
+    "fdc_id": 2710822,
+    "food_name": "Arugula, baby, raw",
+    "reference_answer": "The vitamin C content in tender young rocket leaves (arugula, baby) when consumed raw is 101 mg."
+  },
+  {
+    "question": "How many calories are in a 100g serving of those sweet, soft, green-skinned fruits often enjoyed fresh or sliced in salads?",
+    "fdc_id": 746773,
+    "food_name": "Pears, raw, bartlett",
+    "reference_answer": "A 100g serving of raw Bartlett pears contains 57 calories."
+  },
+  {
+    "question": "What is the sodium content in those individually wrapped slices of processed cheese?",
+    "fdc_id": 2647439,
+    "food_name": "Cheese, pasteurized process cheese food or product, American, singles",
+    "reference_answer": "The sodium content in the individually wrapped slices of processed cheese (American, singles) is 1420 mg."
+  },
+  {
+    "question": "What is the carbohydrate content in this common sweetener often used in baking and cooking?",
+    "fdc_id": 746784,
+    "food_name": "Sugars, granulated",
+    "reference_answer": "The carbohydrate content in granulated sugars is 99.6 grams."
+  },
+  {
+    "question": "What is the protein content in thinly sliced cured sausage often used in sandwiches and antipasto platters?",
+    "fdc_id": 2759005,
+    "food_name": "Salami, hard, sliced",
+    "reference_answer": "The protein content in hard sliced salami is 0.0 grams."
+  },
+  {
+    "question": "What is the fiber content of the raw variety of this vegetable that is often used as a low-carb pasta substitute?",
+    "fdc_id": 2727579,
+    "food_name": "Squash, spaghetti, peeled, seeded, raw",
+    "reference_answer": "The fiber content of raw spaghetti squash is 1.4 grams."
+  },
+  {
+    "question": "What is the calorie content of the crisp green leaf often used in salads and sandwiches?",
+    "fdc_id": 2346388,
+    "food_name": "Lettuce, iceberg, raw",
+    "reference_answer": "Lettuce, iceberg, raw contains 17.1 calories."
+  },
+  {
+    "question": "What is the protein content in the cooked, braised leg portion of poultry?",
+    "fdc_id": 331897,
+    "food_name": "Chicken, broilers or fryers, drumstick, meat only, cooked, braised",
+    "reference_answer": "The protein content in the cooked, braised leg portion of poultry (chicken drumstick, meat only) is 23.9 grams."
+  }
+]

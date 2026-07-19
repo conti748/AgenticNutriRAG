@@ -68,14 +68,14 @@
 
 ## 5. Answer Evaluation (`answer-evaluation`)
 
-- [ ] 5.1 Extend the ground-truth set with LLM-generated reference answers
+- [x] 5.1 Extend the ground-truth set with LLM-generated reference answers
       per question
-- [ ] 5.2 Implement embedding cosine-similarity scoring between generated
+- [x] 5.2 Implement embedding cosine-similarity scoring between generated
       and reference answers
-- [ ] 5.3 Implement LLM-as-judge scoring (relevance/faithfulness rubric)
-- [ ] 5.4 Run both scoring approaches against the agent's answers for the
+- [x] 5.3 Implement LLM-as-judge scoring (relevance/faithfulness rubric)
+- [x] 5.4 Run both scoring approaches against the agent's answers for the
       evaluation set and produce a comparison report
-- [ ] 5.5 Document the selected best-scoring configuration and confirm it
+- [x] 5.5 Document the selected best-scoring configuration and confirm it
       matches what's shipped as the default
 
 ## 6. Streamlit Chat Interface (`chat-interface`)
