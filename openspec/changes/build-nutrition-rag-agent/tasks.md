@@ -21,22 +21,22 @@
 
 ## 2. Data Ingestion Pipeline (`nutrition-data-ingestion`)
 
-- [ ] 2.1 Write a USDA FoodData Central client (fetch by category/subset,
+- [x] 2.1 Write a USDA FoodData Central client (fetch by category/subset,
       handle pagination and the API key)
-- [ ] 2.2 Document the ingested subset (Foundation Foods only) to bound
+- [x] 2.2 Document the ingested subset (Foundation Foods only) to bound
       embedding cost/time
-- [ ] 2.3 Write a transform step that flattens each food record into a
+- [x] 2.3 Write a transform step that flattens each food record into a
       description string + structured nutrient object (calories, macros,
       key vitamins/minerals)
-- [ ] 2.4 Write the Elasticsearch index mapping: text field, dense vector
+- [x] 2.4 Write the Elasticsearch index mapping: text field, dense vector
       field, nutrient object field
-- [ ] 2.5 Write the embedding step (OpenAI embeddings API) for each food's
+- [x] 2.5 Write the embedding step (OpenAI embeddings API) for each food's
       description field
-- [ ] 2.6 Write the indexing step using a stable ID derived from FDC ID
+- [x] 2.6 Write the indexing step using a stable ID derived from FDC ID
       (idempotent re-runs, no duplicates)
-- [ ] 2.7 Wire fetch → transform → embed → index into a single runnable
+- [x] 2.7 Wire fetch → transform → embed → index into a single runnable
       ingestion script/entrypoint
-- [ ] 2.8 Verify: run ingestion against an empty index and confirm document
+- [x] 2.8 Verify: run ingestion against an empty index and confirm document
       count matches the configured subset
 
 ## 3. Agentic RAG Flow (`nutrition-rag-agent`)
