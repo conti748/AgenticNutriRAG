@@ -90,3 +90,51 @@ those nutrients can only be answered via loose semantic association (e.g.
 `search_text` with the full core nutrient set would likely raise scores
 further and is a natural follow-up if retrieval on micro-nutrient questions
 matters for this project.
+
+## Answer Evaluation
+
+Generated-answer quality is evaluated with two independent scoring approaches
+against the same LLM-generated ground-truth set used for retrieval
+evaluation, extended with one LLM-generated reference answer per question
+(grounded in that question's expected food's full nutrient data, so the
+reference is factually anchored rather than free-form):
+
+- **Embedding cosine similarity** between the agent's generated answer and
+  the reference answer (`text-embedding-3-small`) — cheap, purely semantic.
+- **LLM-as-judge** — a 1-5 relevance/faithfulness rating of the generated
+  answer against the reference, from the same chat model used elsewhere in
+  the project.
+
+Query rewriting is held fixed at its already-chosen default (on, see
+Retrieval Evaluation above) and only retrieval strategy is swept, since
+re-testing rewriting here would duplicate what retrieval evaluation already
+settled. Run it with:
+
+```bash
+uv run python -m eval.answer_eval
+```
+
+It generates/reuses `data/eval/answer_ground_truth.json`, runs the live
+agent for every question under each retrieval strategy, scores every answer
+both ways, and writes `data/eval/answer_report.md`. Latest run (30
+questions):
+
+| Strategy | Cosine Similarity | LLM Judge |
+|---|---|---|
+| vector_only | 0.824 | 4.367 |
+| hybrid | 0.822 | 4.067 |
+| text_only | 0.813 | 3.900 |
+
+**Default stays hybrid retrieval** (`RETRIEVAL_STRATEGY=hybrid`, see
+`src/config.py`), unchanged from the retrieval-evaluation pick, even though
+`vector_only` scores marginally higher here. Two reasons: the gap is small
+on a 30-question set (0.824 vs 0.822 cosine; the LLM judge gap is more
+visible but the same 30 answers are used across all three rows, so it isn't
+an independent confirmation) — and, more importantly, retrieval evaluation
+measures whether the *right food is found at all* (hybrid's MRR 0.711 vs
+vector_only's 0.672, a larger and more reliable margin), which bounds
+answer quality far more than the generation step does: if the wrong food is
+retrieved, no amount of answer-generation polish recovers a correct answer.
+Answer evaluation here is read as confirming hybrid produces answers that
+are competitive with — not worse than — the alternatives, rather than as a
+reason to override the retrieval-evaluation pick.
