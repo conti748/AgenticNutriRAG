@@ -57,13 +57,13 @@
 
 ## 4. Retrieval Evaluation (`retrieval-evaluation`)
 
-- [ ] 4.1 Write the ground-truth generator: sample indexed foods, use an LLM
+- [x] 4.1 Write the ground-truth generator: sample indexed foods, use an LLM
       to produce plausible questions per food, save (question, FDC ID) pairs
-- [ ] 4.2 Spot-check and filter the generated ground-truth set for quality
-- [ ] 4.3 Implement hit rate and MRR metrics
-- [ ] 4.4 Run the evaluation across text-only / vector-only / hybrid, each
+- [x] 4.2 Spot-check and filter the generated ground-truth set for quality
+- [x] 4.3 Implement hit rate and MRR metrics
+- [x] 4.4 Run the evaluation across text-only / vector-only / hybrid, each
       with rewriting on/off, and produce a comparison report/table
-- [ ] 4.5 Pick the best-performing strategy/rewriting combination and set it
+- [x] 4.5 Pick the best-performing strategy/rewriting combination and set it
       as the agent's default configuration
 
 ## 5. Answer Evaluation (`answer-evaluation`)
