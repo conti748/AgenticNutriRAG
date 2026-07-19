@@ -1,0 +1,50 @@
+schema: spec-driven
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+context: |
+  Project: AgenticNutriRAG — final project for the DataTalksClub LLM Zoomcamp
+  (https://github.com/DataTalksClub/llm-zoomcamp), graded against project.md's rubric.
+
+  Domain: Agentic RAG assistant for nutrition questions, backed by the USDA
+  FoodData Central dataset/API (nutrient values, food comparisons, calorie
+  lookups). Not the course FAQ dataset.
+
+  Tech stack decisions (already made by the user, do not re-litigate):
+  - LLM + embeddings: OpenAI (chat model for generation, OpenAI embeddings for
+    the knowledge base).
+  - Knowledge/vector store: Elasticsearch (BM25 + dense vector fields) to
+    enable hybrid search as a bonus point.
+  - Interface: Streamlit web app (targets the 2-point "Interface" rubric
+    criterion).
+  - Ingestion: Python scripts pulling from the USDA FoodData Central API/bulk
+    download, aiming for a fully automated pipeline (2-point "Ingestion"
+    criterion).
+  - Evaluation: multiple approaches for both retrieval (e.g. hit rate, MRR
+    across different search strategies) and LLM answer quality (e.g.
+    cosine-similarity-based and LLM-as-judge), selecting the best per the
+    rubric's 2-point criteria.
+  - Monitoring: user feedback capture + a dashboard with 5+ charts (e.g.
+    Postgres for logs/feedback, Grafana for dashboards), per the course's
+    usual monitoring stack.
+  - Containerization: full docker-compose (app, Elasticsearch, Postgres,
+    Grafana).
+  - Bonus points to target from the start: hybrid search (text + vector) and
+    query rewriting. Re-ranking and cloud deployment are stretch goals for
+    later, not part of the MVP.
+
+  Grading context: scored 0-2 on each of Problem Description, Retrieval Flow,
+  Retrieval Evaluation, LLM Evaluation, Interface, Ingestion Pipeline,
+  Monitoring, Containerization, Reproducibility — plus bonus points for best
+  practices. Optimize the plan to hit 2/2 on every core criterion before
+  adding extra bonus scope.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
