@@ -1,12 +1,23 @@
 ## 1. Project Scaffolding
 
-- [ ] 1.1 Set up Python project structure (e.g. `src/` with `ingestion/`,
+- [x] 1.1 Set up Python project structure (e.g. `src/` with `ingestion/`,
       `agent/`, `eval/`, `app/`, `monitoring/` packages) and dependency
-      management (requirements.txt or pyproject.toml)
-- [ ] 1.2 Add `.env.example` listing `OPENAI_API_KEY`, `USDA_API_KEY`,
+      management with `uv` (`uv init`, `pyproject.toml` + `uv.lock`)
+- [x] 1.2 Add `.env.example` listing `OPENAI_API_KEY`, `USDA_API_KEY`,
       `ELASTICSEARCH_URL`, `POSTGRES_*`, `GRAFANA_*`
-- [ ] 1.3 Add a config module that loads and validates required environment
+- [x] 1.3 Add a config module that loads and validates required environment
       variables, failing fast with clear errors when missing
+- [x] 1.4 Configure `ruff` (lint + format) in `pyproject.toml`
+- [x] 1.5 Configure `mypy` in `pyproject.toml`
+- [x] 1.6 Configure `pytest` (test discovery/paths) in `pyproject.toml` and
+      add a `tests/` package with a placeholder test
+- [x] 1.7 Set up `pre-commit` (`.pre-commit-config.yaml`) with hooks for
+      `ruff` (lint + format), `mypy`, and standard hygiene checks
+      (trailing whitespace, end-of-file, YAML/TOML syntax)
+- [x] 1.8 Add a minimal `.gitlab-ci.yml` with stages for lint (`ruff`,
+      `mypy`) and test (`pytest`), running via `uv`
+- [x] 1.9 Verify: `pre-commit run --all-files` and the GitLab CI pipeline
+      both pass on a clean checkout
 
 ## 2. Data Ingestion Pipeline (`nutrition-data-ingestion`)
 

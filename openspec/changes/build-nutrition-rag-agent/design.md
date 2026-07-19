@@ -102,6 +102,26 @@ service/job that populates Elasticsearch on first run. All configuration
 (OpenAI key, USDA API key, DB credentials) via `.env`, documented in the
 README.
 
+### 8. Development tooling: uv, ruff, mypy, pytest, pre-commit, minimal GitLab CI
+Dependency/environment management uses `uv` (`pyproject.toml` + `uv.lock`)
+instead of `pip`/`requirements.txt` or Poetry. Linting and formatting use
+`ruff`, static typing is checked with `mypy`, and unit tests run with
+`pytest`. All three are enforced locally via `pre-commit` hooks so issues
+are caught before they reach CI. A minimal `.gitlab-ci.yml` runs the same
+lint/type-check/test steps on every push, giving a baseline CI gate without
+building out deployment pipelines yet.
+- **Why**: `uv` gives fast, reproducible installs and a single lockfile for a
+  project with several heavy dependencies (OpenAI SDK, Elasticsearch client,
+  Streamlit); `ruff` replaces flake8/black/isort with one fast tool; `mypy`
+  catches type errors early in a codebase with many small data-shuffling
+  functions (ingestion transforms, evaluation scoring); `pytest` is the
+  de facto standard for the unit tests referenced throughout tasks.md (e.g.
+  the agent-loop and hybrid-query smoke tests).
+- **Alternative considered**: Poetry — rejected, slower resolver and no
+  meaningful benefit over `uv` for this project's needs.
+- **Alternative considered**: GitHub Actions — not used since the repo's
+  remote is GitLab-hosted; CI config targets GitLab CI accordingly.
+
 ## Risks / Trade-offs
 
 - [OpenAI API cost/rate limits during embedding of the full USDA dataset] →
