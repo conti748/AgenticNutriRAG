@@ -42,14 +42,22 @@ embedded text.
   rejected, it multiplies document count ~150x and makes "compare food A vs
   B" queries harder to retrieve as a single hit.
 
-### 2. Retrieval: Elasticsearch hybrid (BM25 + kNN dense vector), combined via RRF
-Elasticsearch's native `rank` hybrid query (reciprocal rank fusion of a BM25
-query and a kNN query) is used instead of a separate vector DB. This
-directly implements the "hybrid search" bonus point without adding another
-moving part to the stack.
+### 2. Retrieval: Elasticsearch hybrid (BM25 + kNN dense vector), combined via RRF in application code
+Hybrid retrieval runs a BM25 `match` query and a kNN query against
+Elasticsearch separately, then fuses the two ranked result lists in Python
+using the standard reciprocal rank fusion formula (`score = Σ 1/(k + rank)`,
+`k = 60`, matching Elasticsearch's own default `rank_constant`). This
+implements the "hybrid search" bonus point without a separate vector DB.
+- **Alternative considered**: Elasticsearch's native `retriever`/`rank.rrf`
+  hybrid query — rejected after discovering it requires an Enterprise or
+  trial license (`AuthorizationException: current license is non-compliant
+  for [Reciprocal Rank Fusion (RRF)]` on the free Basic license shipped in
+  `docker-compose`). Relying on it would break one-command reproducibility
+  for anyone without a paid/trial license, so fusion is done in application
+  code instead.
 - **Alternative considered**: separate vector DB (Qdrant/Chroma) + BM25 via
   Postgres full-text — rejected, doubles infra for no benefit given
-  Elasticsearch supports both natively.
+  Elasticsearch supports both query types natively.
 
 ### 3. Agent flow: single OpenAI chat model with one tool, not a multi-agent framework
 The agent loop is: (1) optionally rewrite the user's query for retrieval,
