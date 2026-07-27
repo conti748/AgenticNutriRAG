@@ -114,12 +114,12 @@
 
 ## 9. Documentation & Reproducibility
 
-- [ ] 9.1 Write the README: problem description, architecture diagram,
+- [x] 9.1 Write the README: problem description, architecture diagram,
       dataset description, setup/reproduction instructions, versions
-- [ ] 9.2 Document retrieval and answer evaluation results and the chosen
+- [x] 9.2 Document retrieval and answer evaluation results and the chosen
       defaults
-- [ ] 9.3 Document the bonus points implemented (hybrid search, query
+- [x] 9.3 Document the bonus points implemented (hybrid search, query
       rewriting) and how to verify them
 - [ ] 9.4 Add screenshots of the Streamlit app and the Grafana dashboard
-- [ ] 9.5 Final end-to-end check: clone-to-running-app following only the
+- [x] 9.5 Final end-to-end check: clone-to-running-app following only the
       README, on a clean checkout
