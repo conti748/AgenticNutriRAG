@@ -105,11 +105,11 @@
 
 ## 8. Containerization (`deployment`)
 
-- [ ] 8.1 Write Dockerfile(s) for the app and ingestion job
-- [ ] 8.2 Write `docker-compose.yml` with app, elasticsearch, postgres,
+- [x] 8.1 Write Dockerfile(s) for the app and ingestion job
+- [x] 8.2 Write `docker-compose.yml` with app, elasticsearch, postgres,
       grafana (+ provisioning mounts), pinning image versions
-- [ ] 8.3 Wire the ingestion job as a `docker-compose run`-able service
-- [ ] 8.4 Verify: fresh `docker-compose up` from a clean environment brings
+- [x] 8.3 Wire the ingestion job as a `docker-compose run`-able service
+- [x] 8.4 Verify: fresh `docker-compose up` from a clean environment brings
       up all services and the app becomes reachable
 
 ## 9. Documentation & Reproducibility
