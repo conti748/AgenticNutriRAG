@@ -1,0 +1,20 @@
+# Provisions the Postgres datasource that backs the AgenticNutriRAG dashboard.
+# Values are expanded from the same POSTGRES_* env vars used by the app and the
+# ingestion job (see docker-compose.yml and .env.example), so no manual setup is
+# needed after `docker-compose up`.
+apiVersion: 1
+
+datasources:
+  - name: Postgres
+    type: postgres
+    access: proxy
+    url: ${POSTGRES_HOST}:${POSTGRES_PORT}
+    database: ${POSTGRES_DB}
+    user: ${POSTGRES_USER}
+    isDefault: true
+    editable: false
+    secureJsonData:
+      password: ${POSTGRES_PASSWORD}
+    jsonData:
+      sslmode: disable
+      postgresVersion: 1500

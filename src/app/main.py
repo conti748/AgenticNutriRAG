@@ -4,6 +4,7 @@ Run with: uv run streamlit run src/app/main.py
 Requires a populated Elasticsearch index (see ingestion.pipeline).
 """
 
+import time
 import uuid
 from typing import Any
 
@@ -14,6 +15,7 @@ from openai import OpenAI
 from agent.rag import answer_question
 from config import get_settings
 from monitoring.feedback import record_feedback
+from monitoring.interactions import record_interaction
 
 EXAMPLE_QUESTIONS = [
     "How much protein is in an egg?",
@@ -87,10 +89,15 @@ if question:
     es_client, openai_client = get_clients()
     with st.chat_message("assistant"):
         with st.spinner("Looking up nutrition data..."):
+            start_time = time.perf_counter()
             answer = answer_question(es_client, openai_client, question)
+            latency_ms = (time.perf_counter() - start_time) * 1000
+
+        interaction_id = str(uuid.uuid4())
+        record_interaction(interaction_id, question, answer, latency_ms)
 
         new_interaction = {
-            "id": str(uuid.uuid4()),
+            "id": interaction_id,
             "question": question,
             "answer": answer,
             "feedback": None,
