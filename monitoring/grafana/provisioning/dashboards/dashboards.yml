@@ -1,0 +1,14 @@
+# Provisions the AgenticNutriRAG dashboard from the JSON file(s) under
+# monitoring/grafana/dashboards/, so it's available with no manual import step.
+apiVersion: 1
+
+providers:
+  - name: AgenticNutriRAG
+    orgId: 1
+    folder: ""
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    options:
+      path: /etc/grafana/dashboards
+      foldersFromFilesStructure: false

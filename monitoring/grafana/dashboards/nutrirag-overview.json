@@ -1,0 +1,92 @@
+{
+  "id": null,
+  "uid": "nutrirag-overview",
+  "title": "AgenticNutriRAG Overview",
+  "description": "Query volume, feedback, latency, retrieval strategy usage, and evaluation score trend for AgenticNutriRAG.",
+  "tags": ["agenticnutrirag"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Query volume over time",
+      "type": "timeseries",
+      "datasource": "Postgres",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "datasource": "Postgres",
+          "format": "time_series",
+          "rawSql": "SELECT $__timeGroup(created_at, '1h') AS time, count(*) AS queries FROM interactions WHERE $__timeFilter(created_at) GROUP BY 1 ORDER BY 1",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Feedback rate (thumbs up vs down)",
+      "type": "piechart",
+      "datasource": "Postgres",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "datasource": "Postgres",
+          "format": "table",
+          "rawSql": "SELECT value AS metric, count(*) AS count FROM feedback WHERE $__timeFilter(created_at) GROUP BY value",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Latency distribution",
+      "type": "histogram",
+      "datasource": "Postgres",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "datasource": "Postgres",
+          "format": "table",
+          "rawSql": "SELECT latency_ms FROM interactions WHERE $__timeFilter(created_at)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Retrieval strategy usage",
+      "type": "piechart",
+      "datasource": "Postgres",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        {
+          "datasource": "Postgres",
+          "format": "table",
+          "rawSql": "SELECT retrieval_strategy AS metric, count(*) AS count FROM interactions WHERE $__timeFilter(created_at) GROUP BY retrieval_strategy",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Evaluation score trend",
+      "type": "timeseries",
+      "datasource": "Postgres",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "datasource": "Postgres",
+          "format": "time_series",
+          "rawSql": "SELECT created_at AS time, metric_value, strategy || ' / ' || metric_name AS metric FROM evaluation_runs WHERE $__timeFilter(created_at) ORDER BY 1",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

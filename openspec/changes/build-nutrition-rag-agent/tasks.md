@@ -90,17 +90,17 @@
 
 ## 7. Monitoring (`monitoring`)
 
-- [ ] 7.1 Design and create the Postgres schema (interactions table,
+- [x] 7.1 Design and create the Postgres schema (interactions table,
       feedback table)
-- [ ] 7.2 Wire interaction logging into the agent/app flow (question,
+- [x] 7.2 Wire interaction logging into the agent/app flow (question,
       rewritten query, strategy, retrieved FDC IDs, answer, latency,
       timestamp)
-- [ ] 7.3 Wire feedback logging into the Streamlit feedback controls
-- [ ] 7.4 Provision a Grafana datasource pointing at Postgres
-- [ ] 7.5 Build the 5+ panel dashboard (query volume, feedback rate,
+- [x] 7.3 Wire feedback logging into the Streamlit feedback controls
+- [x] 7.4 Provision a Grafana datasource pointing at Postgres
+- [x] 7.5 Build the 5+ panel dashboard (query volume, feedback rate,
       latency distribution, retrieval strategy usage, evaluation score
       trend) as a provisioned Grafana dashboard JSON
-- [ ] 7.6 Write a synthetic data seeding script and verify the dashboard
+- [x] 7.6 Write a synthetic data seeding script and verify the dashboard
       renders populated charts from it
 
 ## 8. Containerization (`deployment`)
