@@ -352,14 +352,13 @@ environment).
 **Streamlit chat interface** — asking a question and receiving a grounded,
 source-cited answer:
 
-![Streamlit app](docs/screenshots/streamlit-app.png)
+![Streamlit app](docs/screenshots/streamlit_app.png)
 *(placeholder — screenshot to be added)*
 
 **Grafana dashboard** — the 5-panel AgenticNutriRAG Overview dashboard,
 populated via `scripts/seed_monitoring_data.py`:
 
-![Grafana dashboard](docs/screenshots/grafana-dashboard.png)
-*(placeholder — screenshot to be added)*
+![Grafana dashboard](docs/screenshots/grafana_dashboard.png)
 
 ## Development Tooling
 
