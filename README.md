@@ -26,55 +26,72 @@ The system:
   answer quality (embedding similarity, LLM-as-judge) so the shipped
   configuration is a measured choice, not a guess.
 
+## Zoomcamp Rubric Coverage
+
+This is the final project for [DataTalksClub's LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp),
+a free course on building LLM-powered applications (agentic RAG, retrieval/
+answer evaluation, monitoring), graded against the course's rubric. Below is
+what this project implements for each graded criterion and where to find it:
+
+| Criterion | What this project does | Where |
+|---|---|---|
+| Problem description | Nutrition Q&A over USDA FoodData Central | [Problem Description](#problem-description) |
+| Retrieval flow | Knowledge base (Elasticsearch) + LLM used together in an agentic loop | [Architecture](#architecture), `src/agent/` |
+| Retrieval evaluation | Multiple strategies compared (text/vector/hybrid), best one selected | [Retrieval Evaluation](#retrieval-evaluation) |
+| LLM evaluation | Multiple approaches compared (cosine similarity, LLM-as-judge), best one selected | [Answer Evaluation](#answer-evaluation) |
+| Interface | Streamlit chat UI | [Architecture](#architecture), `src/app/` |
+| Ingestion pipeline | Fully automated, one-command ingestion from a live API | [Dataset](#dataset) |
+| Monitoring | Feedback collection + 5-panel Grafana dashboard | [Monitoring](#monitoring) |
+| Containerization | Full stack (app + all dependencies) in `docker-compose` | [Setup & Reproduction](#setup--reproduction) |
+| Reproducibility | Pinned deps (`uv.lock`), documented setup, one-command run | [Setup & Reproduction](#setup--reproduction) |
+| Bonus: hybrid search | BM25 + dense vector, fused via RRF | [Bonus Points](#bonus-points) |
+| Bonus: query rewriting | Evaluated on/off as its own step | [Bonus Points](#bonus-points) |
+
+The full design rationale (alternatives considered, trade-offs) lives in
+`openspec/changes/build-nutrition-rag-agent/design.md`.
+
 ## Architecture
 
-```mermaid
-flowchart LR
-    subgraph Ingestion
-        USDA[USDA FoodData Central API] --> Pipeline[ingestion.pipeline]
-        Pipeline -- embeds --> OpenAIEmb[OpenAI Embeddings]
-        Pipeline -- indexes --> ES[(Elasticsearch<br/>usda_foods)]
-    end
+The project is a single pipeline with five stages, all reproducible with one
+`docker-compose up`:
 
-    subgraph Serving
-        User((User)) --> UI[Streamlit app]
-        UI --> Agent[agent.rag]
-        Agent -- rewrite --> OpenAIChat[OpenAI Chat]
-        Agent -- hybrid search --> ES
-        Agent -- lookup_food_nutrients --> ES
-        Agent -- generate answer --> OpenAIChat
-        Agent --> UI
-    end
+1. **Ingestion** (`src/ingestion/`) fetches Foundation Foods records from the
+   USDA FoodData Central API and indexes each one into Elasticsearch as a
+   single document: a natural-language description (used for both BM25 text
+   search and an OpenAI embedding) plus a structured field holding every
+   nutrient USDA reports for that food. Re-running ingestion is idempotent
+   (FDC ID is used as the document ID), so the same command populates a
+   fresh instance or refreshes an existing one.
+2. **Agent** (`src/agent/`) handles each question in four steps: an LLM call
+   optionally rewrites the user's question into a search-optimized query;
+   that query is run against Elasticsearch twice (a BM25 `match` and a kNN
+   vector search) and the two ranked lists are fused in Python with
+   reciprocal rank fusion (RRF) — done in application code rather than via
+   Elasticsearch's native RRF retriever, which requires a paid/trial license
+   (see `design.md` decision 2); the resulting candidate foods are handed to
+   an OpenAI chat model, which can call a `lookup_food_nutrients` tool to
+   pull a candidate's full nutrient detail on demand; the model then
+   generates an answer citing the specific foods it used. There's no
+   multi-agent framework involved — it's a single chat model with one tool,
+   implemented directly against the OpenAI SDK (see `design.md` decision 3).
+3. **App** (`src/app/`) is a Streamlit chat interface that runs the above
+   loop per question, shows the sources behind each answer, and collects
+   thumbs-up/thumbs-down feedback.
+4. **Monitoring** (`src/monitoring/`) logs every question, rewritten query,
+   retrieval strategy, answer, latency, and feedback event to Postgres. A
+   provisioned Grafana dashboard reads directly from Postgres.
+5. **Evaluation** (`src/eval/`) runs offline, independent of the live app:
+   one harness compares retrieval strategies, another compares
+   answer-scoring approaches, both against an LLM-generated ground-truth
+   set. Results are written as markdown reports and used to pick the
+   defaults `src/agent/` runs with in production (see
+   [Retrieval Evaluation](#retrieval-evaluation) and
+   [Answer Evaluation](#answer-evaluation)).
 
-    subgraph Monitoring
-        UI -- log interaction/feedback --> PG[(Postgres)]
-        Grafana[Grafana] -- queries --> PG
-    end
-
-    subgraph Evaluation
-        EvalRetrieval[eval.retrieval_eval] --> ES
-        EvalAnswer[eval.answer_eval] --> Agent
-    end
-```
-
-- **Ingestion** (`src/ingestion/`): fetches Foundation Foods from USDA,
-  flattens each into a description + structured nutrient object, embeds the
-  description, and indexes both into Elasticsearch under a stable
-  FDC-ID-derived document ID (idempotent re-runs).
-- **Agent** (`src/agent/`): query rewriting → hybrid retrieval (BM25 + kNN,
-  fused via RRF in Python) → optional `lookup_food_nutrients` tool calls →
-  grounded, source-citing answer generation. No agent framework — direct
-  OpenAI SDK tool-calling (see `openspec/changes/build-nutrition-rag-agent/design.md`
-  decision 3 for why).
-- **App** (`src/app/`): Streamlit chat interface, one question/answer per
-  turn, thumbs up/down feedback per answer.
-- **Monitoring** (`src/monitoring/`): every interaction and feedback event
-  is written to Postgres; Grafana (provisioned datasource + dashboard JSON,
-  see `monitoring/grafana/`) renders 5 panels from it.
-- **Evaluation** (`src/eval/`): offline harnesses for retrieval quality and
-  answer quality, each against an LLM-generated ground-truth set — see
-  [Retrieval Evaluation](#retrieval-evaluation) and
-  [Answer Evaluation](#answer-evaluation) below.
+Everything runs inside `docker-compose`: `elasticsearch` (knowledge base),
+`postgres` (interaction/feedback log), `grafana` (dashboard), `app`
+(Streamlit, built from the same image as ingestion), and an `ingestion`
+one-off job to populate Elasticsearch on first run.
 
 ## Tech Stack & Versions
 
